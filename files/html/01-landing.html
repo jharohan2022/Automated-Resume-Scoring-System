@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecruitIQ — AI Resume Intelligence Platform</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="mainNav">
+  <div class="logo">Recruit<span>IQ</span></div>
+  <div class="nav-links" id="navLinks">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#">Docs</a>
+    <a href="#">Blog</a>
+  </div>
+  <div class="nav-cta">
+    <a href="02-signup.html" class="btn btn-secondary btn-sm">Sign in</a>
+    <a href="02-signup.html" class="btn btn-primary btn-sm">Start free →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Now with BERT semantic matching · v2.0
+  </div>
+
+  <h1>
+    <span class="line1">Hire Smarter.</span>
+    <span class="line2">Rank Faster.</span>
+    <span class="line3"><span id="hero-typer">Powered by AI.</span></span>
+  </h1>
+
+  <p class="hero-desc">
+    Analyze hundreds of resumes in seconds. Our AI scores, ranks, and highlights
+    your best candidates — so you focus on people, not paperwork.
+  </p>
+
+  <div class="hero-actions">
+    <a href="02-signup.html" class="btn btn-primary btn-lg">Start for free →</a>
+    <a href="03-dashboard.html" class="btn btn-secondary btn-lg">View demo</a>
+  </div>
+
+  <p class="hero-note">No credit card required · 25 resumes free · Setup in 2 minutes</p>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-band">
+  <div class="stat-block"><span class="stat-num" id="stat-companies" data-count="12000">12,000</span><div class="stat-lbl">Companies using RecruitIQ</div></div>
+  <div class="stat-block"><span class="stat-num">98.3%</span><div class="stat-lbl">AI matching accuracy</div></div>
+  <div class="stat-block"><span class="stat-num">50ms</span><div class="stat-lbl">Average analysis time</div></div>
+  <div class="stat-block"><span class="stat-num" data-count="4200000">4.2M</span><div class="stat-lbl">Resumes processed</div></div>
+</div>
+
+<!-- ── FEATURES ── -->
+<section class="features-section" id="features">
+  <div class="section-label">Platform features</div>
+  <div class="section-title">Everything you need to<br>hire <em>10× faster</em></div>
+
+  <div class="features-grid">
+    <div class="feat-card"><div class="feat-icon">🧠</div><div class="feat-title">Semantic AI Matching</div><div class="feat-desc">BERT embeddings understand context — "developed microservices" matches "Node.js architecture" without exact keywords.</div></div>
+    <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Dynamic Scoring Engine</div><div class="feat-desc">Set custom weights per job. Skills, experience, education — you decide what matters most for each role.</div></div>
+    <div class="feat-card"><div class="feat-icon">🎯</div><div class="feat-title">Skill Gap Analysis</div><div class="feat-desc">Radar charts show exactly which required skills candidates are missing. Spot upskilling potential instantly.</div></div>
+    <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-title">Bulk Processing</div><div class="feat-desc">Upload 50+ resumes at once. Process an entire applicant pool in under 3 seconds. Batch export to CSV/ATS.</div></div>
+    <div class="feat-card"><div class="feat-icon">❓</div><div class="feat-title">Auto Interview Questions</div><div class="feat-desc">AI generates tailored interview questions for each candidate based on their gaps and strengths.</div></div>
+    <div class="feat-card"><div class="feat-icon">🔒</div><div class="feat-title">Enterprise Security</div><div class="feat-desc">GDPR compliant. JWT + bcrypt auth. Rate limiting. Audit logs. SOC 2 Type II ready architecture.</div></div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="section-label">Workflow</div>
+    <div class="section-title">From job post to<br>shortlist in <em>4 steps</em></div>
+    <div class="steps-row">
+      <div class="step"><div class="step-num">01</div><h3>Create Job</h3><p>Define the role, required skills, and experience. Our rich editor auto-suggests keywords.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Upload Resumes</h3><p>Drag & drop up to 50 PDF/DOCX files. Preview and confirm before analysis.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>AI Analyzes</h3><p>BERT semantic matching, ATS scoring, and skill gap analysis run in parallel.</p></div>
+      <div class="step"><div class="step-num">04</div><h3>Hire the Best</h3><p>Review ranked candidates, schedule interviews, and export shortlists to your ATS.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MOCKUP ── -->
+<section class="mockup-section">
+  <div class="section-label">Platform preview</div>
+  <div class="section-title">See the <em>dashboard</em></div>
+  <div class="browser-frame">
+    <div class="browser-bar">
+      <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+      <div class="browser-url">app.recruitiq.io/dashboard</div>
+    </div>
+    <div style="padding:24px;background:var(--ink)">
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:20px;min-height:320px">
+        <div style="background:var(--surface);border-radius:10px;padding:18px;border:1px solid var(--border)">
+          <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--accent);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border)">RecruitIQ</div>
+          <div style="display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;background:rgba(110,231,183,0.1);color:var(--accent);font-size:13px;margin-bottom:3px">⊞ Dashboard</div>
+          <div style="display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;color:var(--muted);font-size:13px;margin-bottom:3px">💼 Jobs</div>
+          <div style="display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;color:var(--muted);font-size:13px;margin-bottom:3px">📤 Upload</div>
+          <div style="display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;color:var(--muted);font-size:13px">📈 Analytics</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px"><div style="font-size:10px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Today</div><div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--accent)">47</div></div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px"><div style="font-size:10px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Open Jobs</div><div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--accent2)">12</div></div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px"><div style="font-size:10px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Avg Match</div><div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--accent3)">72%</div></div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px"><div style="font-size:10px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Top Skill</div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--accent4)">Python</div></div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;flex:1;overflow:hidden">
+            <div style="padding:12px 18px;border-bottom:1px solid var(--border);font-size:13px;font-weight:600">Senior Frontend Engineer — Results</div>
+            <div style="padding:10px 18px;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:center;font-size:12px"><span style="color:var(--accent);font-weight:700">#1</span><span style="flex:1">Sarah Chen</span><span style="background:rgba(110,231,183,0.12);color:var(--accent);padding:2px 8px;border-radius:100px;font-size:11px">94%</span></div>
+            <div style="padding:10px 18px;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:center;font-size:12px"><span style="color:var(--muted)">#2</span><span style="flex:1">James Park</span><span style="background:rgba(129,140,248,0.12);color:var(--accent2);padding:2px 8px;border-radius:100px;font-size:11px">87%</span></div>
+            <div style="padding:10px 18px;display:flex;gap:14px;align-items:center;font-size:12px"><span style="color:var(--muted)">#3</span><span style="flex:1">Maria Lopez</span><span style="background:rgba(244,114,182,0.12);color:var(--accent3);padding:2px 8px;border-radius:100px;font-size:11px">79%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div style="text-align:center">
+      <div class="section-label" style="text-align:center">Pricing</div>
+      <div class="section-title" style="text-align:center">Simple, <em>transparent</em> pricing</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Free</div>
+        <div class="price-amount">$0<sub>/mo</sub></div>
+        <div class="price-desc">Perfect for solo recruiters exploring AI</div>
+        <ul class="price-features">
+          <li>25 resumes/month</li><li>3 active jobs</li><li>Basic AI scoring</li><li>CSV export</li>
+          <li class="no">Semantic matching</li><li class="no">Skill gap radar</li><li class="no">Interview questions</li>
+        </ul>
+        <button class="price-btn btn btn-secondary" onclick="location.href='02-signup.html'">Get started free</button>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Most popular</div>
+        <div class="price-tier">Pro</div>
+        <div class="price-amount">$49<sub>/mo</sub></div>
+        <div class="price-desc">For growing teams that need full AI power</div>
+        <ul class="price-features">
+          <li>500 resumes/month</li><li>Unlimited jobs</li><li>Semantic BERT matching</li>
+          <li>Skill gap radar charts</li><li>Auto interview questions</li><li>PDF/JSON/CSV export</li>
+          <li class="no">Custom scoring weights</li>
+        </ul>
+        <button class="price-btn btn btn-primary" onclick="location.href='02-signup.html'">Start Pro trial</button>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount">$199<sub>/mo</sub></div>
+        <div class="price-desc">For large teams with compliance needs</div>
+        <ul class="price-features">
+          <li>Unlimited resumes</li><li>Custom scoring weights</li><li>SSO + Audit logs</li>
+          <li>GDPR data deletion</li><li>API access + webhooks</li><li>ATS integrations</li><li>Dedicated support</li>
+        </ul>
+        <button class="price-btn btn btn-secondary">Contact sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <h2>Ready to hire your<br>next great team?</h2>
+  <p>Join 12,000+ companies already using RecruitIQ to find better candidates faster.</p>
+  <form class="cta-form" id="ctaForm">
+    <input class="cta-input" type="email" placeholder="Enter your work email" required>
+    <button type="submit" class="btn btn-primary btn-lg">Get started →</button>
+  </form>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo">Recruit<span>IQ</span></div>
+      <p class="footer-desc">AI-powered resume analysis and candidate ranking platform built for modern recruiting teams.</p>
+    </div>
+    <div class="footer-col"><h4>Product</h4><a href="#">Features</a><a href="#">Pricing</a><a href="#">Changelog</a><a href="#">Roadmap</a></div>
+    <div class="footer-col"><h4>Developers</h4><a href="#">API docs</a><a href="#">Webhooks</a><a href="#">SDKs</a><a href="#">Status</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Privacy</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 RecruitIQ. All rights reserved.</span>
+    <span>Made with ♥ for better hiring</span>
+  </div>
+</footer>
+
+<!-- ── Toast Container ── -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="/js/global.js"></script>
+<script src="/js/landing.js"></script>
+</body>
+</html>

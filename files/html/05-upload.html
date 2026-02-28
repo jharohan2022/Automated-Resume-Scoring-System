@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Resumes — RecruitIQ</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo">Recruit<span>IQ</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item" href="03-dashboard.html"><span class="nav-icon">⊞</span> Dashboard</a>
+      <a class="nav-item" href="04-jobs.html"><span class="nav-icon">💼</span> Jobs<span class="nav-badge">12</span></a>
+      <a class="nav-item active" href="05-upload.html"><span class="nav-icon">📤</span> Upload</a>
+      <a class="nav-item" href="06-results.html"><span class="nav-icon">📋</span> Results</a>
+      <a class="nav-item" href="07-analytics.html"><span class="nav-icon">📈</span> Analytics</a>
+      <div class="nav-section-label" style="margin-top:16px">Settings</div>
+      <a class="nav-item" href="#"><span class="nav-icon">⚙️</span> Settings</a>
+      <a class="nav-item" href="#"><span class="nav-icon">🔒</span> Security</a>
+      <a class="nav-item" href="#"><span class="nav-icon">💳</span> Billing</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div>
+        <div class="user-name">Jane Doe</div>
+        <div class="user-role">Pro Plan</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <div class="main-content">
+    <header class="topbar">
+      <div>
+        <div class="topbar-title">Upload Resumes</div>
+        <div class="topbar-subtitle">Senior Frontend Engineer</div>
+      </div>
+      <div class="topbar-right">
+        <div class="icon-btn">🔔</div>
+        <a href="04-jobs.html" class="btn btn-secondary btn-sm">← Change Job</a>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <div style="max-width:820px;margin:0 auto">
+
+        <!-- Job Context Banner -->
+        <div style="background:rgba(110,231,183,0.06);border:1px solid rgba(110,231,183,0.2);border-radius:14px;padding:18px 22px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:42px;height:42px;border-radius:10px;background:rgba(110,231,183,0.15);display:flex;align-items:center;justify-content:center;font-size:20px">💻</div>
+            <div>
+              <div style="font-weight:700;font-size:15px">Senior Frontend Engineer</div>
+              <div style="font-size:12px;color:var(--muted)">Engineering · Remote · Skills: React, TypeScript, Node.js, GraphQL</div>
+            </div>
+          </div>
+          <span class="badge badge-open">Open</span>
+        </div>
+
+        <!-- Drop Zone -->
+        <div class="drop-zone" id="dropZone"
+          ondragover="onDragOver(event)"
+          ondragleave="onDragLeave(event)"
+          ondrop="onDrop(event)"
+          onclick="triggerFilePicker()">
+          <div class="dz-icon">📂</div>
+          <div class="dz-title">Drop resumes here</div>
+          <div class="dz-sub">or click to browse files</div>
+          <div class="dz-meta">PDF, DOCX · Max 25 MB per file · Up to 50 files</div>
+          <input type="file" id="fileInput" multiple accept=".pdf,.docx" style="display:none" onchange="onFileInputChange(event)">
+        </div>
+
+        <!-- File List -->
+        <div id="fileSection" style="display:none;margin-top:22px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div class="panel-title" style="font-size:15px">Uploaded Files<span id="fileCount" style="color:var(--muted);font-weight:400"></span></div>
+            <button class="btn btn-secondary btn-sm" onclick="clearFiles()">Clear all</button>
+          </div>
+          <div class="file-list" id="fileList"></div>
+        </div>
+
+        <!-- Analyze Panel -->
+        <div id="analyzePanel" style="display:none;margin-top:28px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-bottom:4px">Ready to analyze</div>
+            <div style="font-size:13px;color:var(--muted)"><span id="analyzeCount">0 files</span> will be matched against Senior Frontend Engineer</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <div style="font-size:12px;color:var(--muted);text-align:right">
+              Est. time: <strong style="color:var(--accent)">~3 seconds</strong>
+            </div>
+            <button class="btn btn-primary" style="padding:13px 26px;font-size:15px" onclick="startAnalysis()">
+              ⚡ Analyze Resumes →
+            </button>
+          </div>
+        </div>
+
+        <!-- Tips -->
+        <div style="margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px">
+            <div style="font-size:20px;margin-bottom:8px">📄</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:4px">PDF & DOCX supported</div>
+            <div style="font-size:12px;color:var(--muted)">Best results with text-based PDFs, not scanned images.</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px">
+            <div style="font-size:20px;margin-bottom:8px">⚡</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:4px">Batch up to 50 files</div>
+            <div style="font-size:12px;color:var(--muted)">Upload your entire applicant pool at once for bulk scoring.</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px">
+            <div style="font-size:20px;margin-bottom:8px">🔒</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:4px">GDPR compliant</div>
+            <div style="font-size:12px;color:var(--muted)">Files encrypted in transit and at rest. Deleted after 30 days.</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ── ANALYZING OVERLAY ── -->
+<div class="analyzing-overlay" id="analyzingOverlay">
+  <div class="analyzing-box">
+    <div class="analyzing-icon">🧠</div>
+    <div class="analyzing-title">Analyzing Resumes...</div>
+    <div class="analyzing-sub">Our BERT engine is working its magic</div>
+    <div class="analyzing-progress">
+      <div class="analyzing-fill" id="analyzingBar" style="width:0%"></div>
+    </div>
+    <div id="analyzingStatus" style="font-size:12px;color:var(--muted);margin-bottom:22px">Preparing...</div>
+    <div class="anim-steps">
+      <div class="anim-step" id="as1"><div class="anim-step-dot"></div>Parsing resume content...</div>
+      <div class="anim-step" id="as2"><div class="anim-step-dot"></div>Running BERT semantic matching...</div>
+      <div class="anim-step" id="as3"><div class="anim-step-dot"></div>Calculating ATS scores...</div>
+      <div class="anim-step" id="as4"><div class="anim-step-dot"></div>Generating skill gap analysis...</div>
+      <div class="anim-step" id="as5"><div class="anim-step-dot"></div>Ranking candidates...</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="../js/global.js"></script>
+<script src="../js/upload.js"></script>
+</body>
+</html>

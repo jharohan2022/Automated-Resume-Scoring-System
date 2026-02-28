@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - RecruitIQ</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo">Recruit<span>IQ</span></div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-label">Main</div>
+                <a class="nav-item" href="../03-dashboard.html"><span class="nav-icon"></span>Dashboard</a>
+                <a class="nav-item" href="../04-jobs.html"><span class="nav-icon"></span>Jobs<span
+                        class="nav-badge">12</span></a>
+                <a class="nav-item" href="../05-upload.html"><span class="nav-icon"></span>Upload</a>
+                <a class="nav-item" href="../06-results.html"><span class="nav-icon"></span>Results</a>
+                <a class="nav-item active" href="07-analytics.html"><span class="nav-icon"></span>Analytics</a>
+                <div class="nav-section-label" style="margin-top:16px">Settings</div>
+                <a class="nav-item" href="#"><span class="nav-icon"></span>Settings</a>
+                <a class="nav-item" href="#"><span class="nav-icon"></span>Security</a>
+                <a class="nav-item" href="#"><span class="nav-icon"></span>Billing</a>
+            </nav>
+            <div class="sidebar-user">
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div class="user-name">Jane Doe</div>
+                    <div class="user-role">Pro Plan</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <div class="main-content">
+            <header class="topbar">
+                <div>
+                    <div class="topbar-title">Analytics</div>
+                    <div class="topbar-subtitle">Hiring trends & performance metrics</div>
+                </div>
+                <div class="topbar-right">
+                    <input class="topbar-search" type="search" placeholder="Search metrics...">
+                    <div class="icon-btn"></div>
+                    <button class="btn btn-primary btn-sm" onclick="exportReport()">Export Report</button>
+                </div>
+            </header>
+
+            <main class="page-content">
+                <!-- Summary Stats -->
+                <div class="summary-grid">
+                    <div class="sum-card">
+                        <div class="sum-label">Total Resumes</div>
+                        <div class="sum-val" id="sum-resumes">1,247</div>
+                        <div class="sum-trend trend-up">+18% MoM</div>
+                    </div>
+                    <div class="sum-card">
+                        <div class="sum-label">Jobs Created</div>
+                        <div class="sum-val" id="sum-jobs">38</div>
+                        <div class="sum-trend trend-up">+5 this week</div>
+                    </div>
+                    <div class="sum-card">
+                        <div class="sum-label">Avg Match Score</div>
+                        <div class="sum-val" id="sum-match">71.4%</div>
+                        <div class="sum-trend trend-down">-2.1% MoM</div>
+                    </div>
+                    <div class="sum-card">
+                        <div class="sum-label">Shortlisted</div>
+                        <div class="sum-val" id="sum-short">94</div>
+                        <div class="sum-trend trend-up">+12% MoM</div>
+                    </div>
+                    <div class="sum-card">
+                        <div class="sum-label">Avg Time</div>
+                        <div class="sum-val" id="sum-time">4.2s</div>
+                        <div class="sum-trend trend-down">-0.3s</div>
+                    </div>
+                </div>
+
+                <!-- Period Filter -->
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 26px;">
+                    <div class="section-label" style="margin-bottom: 0;">Time Period</div>
+                    <button class="period-btn active" data-period="7d">7d</button>
+                    <button class="period-btn" data-period="30d">30d</button>
+                    <button class="period-btn" data-period="90d">90d</button>
+                    <button class="period-btn" data-period="365d">1Y</button>
+                </div>
+
+                <!-- Main Charts -->
+                <div class="charts-main">
+                    <div class="chart-card" style="height: 420px;">
+                        <div class="chart-title">Hiring Funnel Trends</div>
+                        <div class="chart-sub">Resumes analyzed vs shortlisted over time</div>
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                    <div class="chart-card" style="height: 420px;">
+                        <div class="chart-title">Score Distribution</div>
+                        <div class="chart-sub">All candidates this period</div>
+                        <canvas id="distChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Bottom Grid -->
+                <div class="bottom-grid">
+                    <!-- Skills Heatmap -->
+                    <div class="card">
+                        <div class="panel-head">
+                            <span class="panel-title">Top Skills Demand</span>
+                            <span style="font-size:12px; color:var(--muted);">Across all jobs</span>
+                        </div>
+                        <div class="hmap-container" style="padding:22px; height:320px; overflow:auto;">
+                            <div class="hmap-row">
+                                <div class="hmap-skill">React</div>
+                                <div class="hmap-bars">
+                                    <div class="hmap-cell" style="background:var(--accent); width:85%"></div>
+                                </div>
+                                <div class="hmap-count">28%</div>
+                            </div>
+                            <div class="hmap-row">
+                                <div class="hmap-skill">Python</div>
+                                <div class="hmap-bars">
+                                    <div class="hmap-cell" style="background:var(--accent2); width:72%"></div>
+                                </div>
+                                <div class="hmap-count">19%</div>
+                            </div>
+                            <!-- More rows... -->
+                        </div>
+                    </div>
+
+                    <!-- Hiring Funnel -->
+                    <div class="card">
+                        <div class="panel-head">
+                            <span class="panel-title">Hiring Funnel</span>
+                        </div>
+                        <div style="padding:24px;">
+                            <div class="funnel-step">
+                                <div class="funnel-label">Resumes</div>
+                                <div class="funnel-bar-wrap">
+                                    <div class="funnel-track">
+                                        <div class="funnel-fill" style="background:var(--accent); width:100%">1,247
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="funnel-count">1,247</div>
+                            </div>
+                            <div class="funnel-step">
+                                <div class="funnel-label">Shortlisted</div>
+                                <div class="funnel-bar-wrap">
+                                    <div class="funnel-track">
+                                        <div class="funnel-fill" style="background:var(--accent2); width:65%">812</div>
+                                    </div>
+                                </div>
+                                <div class="funnel-count">812</div>
+                            </div>
+                            <!-- More steps... -->
+                        </div>
+                    </div>
+
+                    <!-- Sources -->
+                    <div class="card">
+                        <div class="panel-head">
+                            <span class="panel-title">Top Sources</span>
+                        </div>
+                        <div style="padding:20px;">
+                            <div class="source-item">
+                                <div class="source-icon" style="background:rgba(110,231,183,0.1)">📄</div>
+                                <div class="source-name">Direct Upload</div>
+                                <div style="margin-left:auto; font-size:14px; font-weight:600; color:var(--accent)">67%
+                                </div>
+                            </div>
+                            <!-- More items... -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../js/global.js"></script>
+    <script src="analytics.js"></script>
+</body>
+
+</html>

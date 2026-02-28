@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobs — RecruitIQ</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo">Recruit<span>IQ</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item" href="03-dashboard.html"><span class="nav-icon">⊞</span> Dashboard</a>
+      <a class="nav-item active" href="04-jobs.html"><span class="nav-icon">💼</span> Jobs<span class="nav-badge">12</span></a>
+      <a class="nav-item" href="05-upload.html"><span class="nav-icon">📤</span> Upload</a>
+      <a class="nav-item" href="06-results.html"><span class="nav-icon">📋</span> Results</a>
+      <a class="nav-item" href="07-analytics.html"><span class="nav-icon">📈</span> Analytics</a>
+      <div class="nav-section-label" style="margin-top:16px">Settings</div>
+      <a class="nav-item" href="#"><span class="nav-icon">⚙️</span> Settings</a>
+      <a class="nav-item" href="#"><span class="nav-icon">🔒</span> Security</a>
+      <a class="nav-item" href="#"><span class="nav-icon">💳</span> Billing</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div>
+        <div class="user-name">Jane Doe</div>
+        <div class="user-role">Pro Plan</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <div class="main-content">
+    <header class="topbar">
+      <div>
+        <div class="topbar-title">Jobs</div>
+        <div class="topbar-subtitle">Manage your open positions</div>
+      </div>
+      <div class="topbar-right">
+        <input class="topbar-search" id="jobSearch" type="search" placeholder="🔍 Search jobs...">
+        <div class="icon-btn">🔔</div>
+        <button class="btn btn-primary btn-sm" onclick="openModal()">+ New Job</button>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <!-- Filter Bar -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+        <div style="display:flex;gap:8px">
+          <button class="filter-chip active" data-filter="all" onclick="setFilter('all',this)" style="padding:7px 16px;border-radius:100px;background:rgba(110,231,183,0.1);border:1px solid rgba(110,231,183,0.3);color:var(--accent);font-size:13px;font-weight:600;cursor:pointer">All Jobs</button>
+          <button class="filter-chip" data-filter="open" onclick="setFilter('open',this)" style="padding:7px 16px;border-radius:100px;background:none;border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer">Open</button>
+          <button class="filter-chip" data-filter="reviewing" onclick="setFilter('reviewing',this)" style="padding:7px 16px;border-radius:100px;background:none;border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer">In Review</button>
+          <button class="filter-chip" data-filter="closed" onclick="setFilter('closed',this)" style="padding:7px 16px;border-radius:100px;background:none;border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer">Closed</button>
+        </div>
+        <div style="font-size:13px;color:var(--muted)">Showing <strong style="color:var(--text)">12</strong> jobs</div>
+      </div>
+
+      <!-- Jobs Grid -->
+      <div class="jobs-grid">
+
+        <div class="job-card" data-status="open">
+          <div class="job-card-top">
+            <div class="job-card-header">
+              <div style="display:flex;gap:12px;align-items:flex-start">
+                <div class="job-icon" style="background:rgba(110,231,183,0.1)">💻</div>
+                <div>
+                  <div class="job-title">Senior Frontend Engineer</div>
+                  <div class="job-dept-tag">Engineering · Remote</div>
+                </div>
+              </div>
+              <span class="badge badge-open">Open</span>
+            </div>
+            <div class="job-description">Build and maintain scalable React applications. Lead technical decisions for the frontend team and mentor junior developers.</div>
+            <div class="skill-tags">
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">GraphQL</span>
+            </div>
+          </div>
+          <div class="job-card-bottom">
+            <div class="job-stats">
+              <div><div class="jb-stat-val" style="color:var(--accent)">34</div><div class="jb-stat-label">Resumes</div></div>
+              <div><div class="jb-stat-val" style="color:var(--accent2)">94%</div><div class="jb-stat-label">Top Score</div></div>
+            </div>
+            <div class="jc-actions">
+              <button class="jc-btn" onclick="event.stopPropagation();deleteJob('1',this)">Delete</button>
+              <button class="jc-btn primary" onclick="location.href='06-results.html'">Results →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="job-card" data-status="open">
+          <div class="job-card-top">
+            <div class="job-card-header">
+              <div style="display:flex;gap:12px;align-items:flex-start">
+                <div class="job-icon" style="background:rgba(129,140,248,0.1)">🗂️</div>
+                <div>
+                  <div class="job-title">Product Manager</div>
+                  <div class="job-dept-tag">Product · Hybrid</div>
+                </div>
+              </div>
+              <span class="badge badge-open">Open</span>
+            </div>
+            <div class="job-description">Own the product roadmap and work closely with engineering and design teams to ship features that delight customers.</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Roadmapping</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Jira</span>
+              <span class="skill-tag">Agile</span>
+            </div>
+          </div>
+          <div class="job-card-bottom">
+            <div class="job-stats">
+              <div><div class="jb-stat-val" style="color:var(--accent)">28</div><div class="jb-stat-label">Resumes</div></div>
+              <div><div class="jb-stat-val" style="color:var(--accent2)">88%</div><div class="jb-stat-label">Top Score</div></div>
+            </div>
+            <div class="jc-actions">
+              <button class="jc-btn" onclick="event.stopPropagation();deleteJob('2',this)">Delete</button>
+              <button class="jc-btn primary" onclick="location.href='06-results.html'">Results →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="job-card" data-status="reviewing">
+          <div class="job-card-top">
+            <div class="job-card-header">
+              <div style="display:flex;gap:12px;align-items:flex-start">
+                <div class="job-icon" style="background:rgba(251,191,36,0.1)">🔬</div>
+                <div>
+                  <div class="job-title">Data Scientist</div>
+                  <div class="job-dept-tag">Data · On-site</div>
+                </div>
+              </div>
+              <span class="badge badge-review">Reviewing</span>
+            </div>
+            <div class="job-description">Build ML models to power RecruitIQ's scoring engine. Work with large candidate datasets to improve matching accuracy.</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">BERT</span>
+            </div>
+          </div>
+          <div class="job-card-bottom">
+            <div class="job-stats">
+              <div><div class="jb-stat-val" style="color:var(--accent)">52</div><div class="jb-stat-label">Resumes</div></div>
+              <div><div class="jb-stat-val" style="color:var(--accent2)">91%</div><div class="jb-stat-label">Top Score</div></div>
+            </div>
+            <div class="jc-actions">
+              <button class="jc-btn" onclick="event.stopPropagation();deleteJob('3',this)">Delete</button>
+              <button class="jc-btn primary" onclick="location.href='06-results.html'">Results →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="job-card" data-status="open">
+          <div class="job-card-top">
+            <div class="job-card-header">
+              <div style="display:flex;gap:12px;align-items:flex-start">
+                <div class="job-icon" style="background:rgba(244,114,182,0.1)">🎨</div>
+                <div>
+                  <div class="job-title">UX Designer</div>
+                  <div class="job-dept-tag">Design · Remote</div>
+                </div>
+              </div>
+              <span class="badge badge-open">Open</span>
+            </div>
+            <div class="job-description">Design intuitive user experiences for our AI hiring platform. Conduct user research and create high-fidelity prototypes.</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">User Research</span>
+              <span class="skill-tag">Prototyping</span>
+            </div>
+          </div>
+          <div class="job-card-bottom">
+            <div class="job-stats">
+              <div><div class="jb-stat-val" style="color:var(--accent)">19</div><div class="jb-stat-label">Resumes</div></div>
+              <div><div class="jb-stat-val" style="color:var(--accent2)">79%</div><div class="jb-stat-label">Top Score</div></div>
+            </div>
+            <div class="jc-actions">
+              <button class="jc-btn" onclick="event.stopPropagation();deleteJob('4',this)">Delete</button>
+              <button class="jc-btn primary" onclick="location.href='06-results.html'">Results →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="job-card" data-status="closed">
+          <div class="job-card-top">
+            <div class="job-card-header">
+              <div style="display:flex;gap:12px;align-items:flex-start">
+                <div class="job-icon" style="background:rgba(100,116,139,0.1)">🛠️</div>
+                <div>
+                  <div class="job-title">DevOps Engineer</div>
+                  <div class="job-dept-tag">Infrastructure · Remote</div>
+                </div>
+              </div>
+              <span class="badge badge-closed">Closed</span>
+            </div>
+            <div class="job-description">Manage cloud infrastructure, CI/CD pipelines and improve system reliability across the entire platform.</div>
+            <div class="skill-tags">
+              <span class="skill-tag">AWS</span>
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">Terraform</span>
+              <span class="skill-tag">Docker</span>
+            </div>
+          </div>
+          <div class="job-card-bottom">
+            <div class="job-stats">
+              <div><div class="jb-stat-val" style="color:var(--muted)">41</div><div class="jb-stat-label">Resumes</div></div>
+              <div><div class="jb-stat-val" style="color:var(--muted)">85%</div><div class="jb-stat-label">Top Score</div></div>
+            </div>
+            <div class="jc-actions">
+              <button class="jc-btn" onclick="event.stopPropagation()">Archive</button>
+              <button class="jc-btn" onclick="location.href='06-results.html'">Results</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="job-card" data-status="open">
+          <div class="job-card-top">
+            <div class="job-card-header">
+              <div style="display:flex;gap:12px;align-items:flex-start">
+                <div class="job-icon" style="background:rgba(52,211,153,0.1)">☁️</div>
+                <div>
+                  <div class="job-title">Backend Engineer</div>
+                  <div class="job-dept-tag">Engineering · Hybrid</div>
+                </div>
+              </div>
+              <span class="badge badge-open">Open</span>
+            </div>
+            <div class="job-description">Build and scale RESTful APIs and microservices powering our resume analysis engine.</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">Redis</span>
+            </div>
+          </div>
+          <div class="job-card-bottom">
+            <div class="job-stats">
+              <div><div class="jb-stat-val" style="color:var(--accent)">22</div><div class="jb-stat-label">Resumes</div></div>
+              <div><div class="jb-stat-val" style="color:var(--accent2)">82%</div><div class="jb-stat-label">Top Score</div></div>
+            </div>
+            <div class="jc-actions">
+              <button class="jc-btn" onclick="event.stopPropagation();deleteJob('6',this)">Delete</button>
+              <button class="jc-btn primary" onclick="location.href='06-results.html'">Results →</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ── CREATE JOB MODAL ── -->
+<div class="modal-overlay" id="createJobModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">Create New Job</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="field" style="grid-column:1/-1">
+          <label>Job Title</label>
+          <input class="input" id="jobTitle" type="text" placeholder="e.g. Senior Frontend Engineer">
+        </div>
+        <div class="field">
+          <label>Department</label>
+          <select class="input select" id="jobDept">
+            <option value="">Select department...</option>
+            <option>Engineering</option>
+            <option>Product</option>
+            <option>Design</option>
+            <option>Data</option>
+            <option>Marketing</option>
+            <option>Sales</option>
+            <option>Operations</option>
+            <option>HR</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Employment Type</label>
+          <select class="input select" id="jobType">
+            <option value="full-time">Full-time</option>
+            <option value="part-time">Part-time</option>
+            <option value="contract">Contract</option>
+            <option value="internship">Internship</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Location Type</label>
+          <select class="input select" id="jobLocation">
+            <option value="remote">Remote</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="onsite">On-site</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Min. Experience <span class="hint">(years)</span></label>
+          <input class="input" id="minExp" type="number" min="0" max="20" placeholder="0" value="0">
+        </div>
+        <div class="field" style="grid-column:1/-1">
+          <label>Salary Range <span class="hint">(optional)</span></label>
+          <input class="input" id="salaryRange" type="text" placeholder="e.g. $90,000 – $130,000">
+        </div>
+        <div class="field" style="grid-column:1/-1">
+          <label>Job Description</label>
+          <textarea class="textarea" id="jobDesc" rows="4" placeholder="Describe the role, responsibilities, and what you're looking for..."></textarea>
+        </div>
+        <div class="field" style="grid-column:1/-1">
+          <label>Required Skills</label>
+          <div style="display:flex;gap:8px;margin-bottom:10px">
+            <input class="input" id="skillInput" type="text" placeholder="Type a skill and press Enter..." style="flex:1">
+            <button class="btn btn-secondary btn-sm" onclick="addSkill()">+ Add</button>
+          </div>
+          <div class="skill-tags" id="skillsList"></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" id="saveJobBtn" onclick="saveJob()">Save & Upload Resumes →</button>
+    </div>
+  </div>
+</div>
+
+<button class="fab" onclick="openModal()" title="New Job">+</button>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../js/global.js"></script>
+<script src="../js/jobs.js"></script>
+</body>
+</html>
