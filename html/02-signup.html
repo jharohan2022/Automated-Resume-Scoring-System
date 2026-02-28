@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — RecruitIQ</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="auth-layout">
+
+  <!-- ── LEFT PANEL ── -->
+  <div class="auth-left">
+    <div class="auth-left-bg"></div>
+    <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column">
+
+      <div class="logo" style="margin-bottom:40px">Recruit<span>IQ</span></div>
+
+      <div style="flex:1">
+        <div class="section-label" style="margin-bottom:16px">Trusted by 12,000+ teams</div>
+        <h2 style="font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1.2;margin-bottom:20px">
+          Hire 10× faster<br>with AI precision
+        </h2>
+        <p style="color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:36px">
+          Analyze hundreds of resumes in seconds. Our BERT-powered engine ranks candidates, identifies skill gaps, and generates tailored interview questions automatically.
+        </p>
+
+        <!-- Testimonial -->
+        <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:24px">
+          <div style="font-size:14px;color:var(--muted2);line-height:1.6;margin-bottom:14px">
+            "RecruitIQ cut our time-to-hire from 3 weeks to 4 days. The AI matching is eerily accurate."
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="user-avatar" style="background:linear-gradient(135deg,#6ee7b7,#818cf8)">JL</div>
+            <div>
+              <div style="font-size:13px;font-weight:600">Jessica Lee</div>
+              <div style="font-size:11px;color:var(--muted)">Head of Talent · Acme Corp</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature pills -->
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="background:rgba(110,231,183,0.09);border:1px solid rgba(110,231,183,0.2);color:var(--accent);padding:5px 12px;border-radius:100px;font-size:12px">🧠 BERT Matching</span>
+          <span style="background:rgba(129,140,248,0.09);border:1px solid rgba(129,140,248,0.2);color:var(--accent2);padding:5px 12px;border-radius:100px;font-size:12px">📊 Skill Radar</span>
+          <span style="background:rgba(244,114,182,0.09);border:1px solid rgba(244,114,182,0.2);color:var(--accent3);padding:5px 12px;border-radius:100px;font-size:12px">❓ Auto Questions</span>
+          <span style="background:rgba(251,191,36,0.09);border:1px solid rgba(251,191,36,0.2);color:var(--accent4);padding:5px 12px;border-radius:100px;font-size:12px">⚡ 50ms Analysis</span>
+        </div>
+      </div>
+
+      <div style="font-size:12px;color:var(--muted);padding-top:24px;border-top:1px solid var(--border)">
+        Already have an account? <a href="02-signup.html" style="color:var(--accent)">Sign in →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RIGHT PANEL ── -->
+  <div class="auth-right">
+    <div class="form-wrap">
+
+      <!-- Step Indicator -->
+      <div class="steps-indicator">
+        <div class="step-item">
+          <div class="step-circle active" id="sc1">1</div>
+          <div class="step-lbl active" id="sl1">Account</div>
+        </div>
+        <div class="step-sep"></div>
+        <div class="step-item">
+          <div class="step-circle" id="sc2">2</div>
+          <div class="step-lbl" id="sl2">Company</div>
+        </div>
+        <div class="step-sep"></div>
+        <div class="step-item">
+          <div class="step-circle" id="sc3">3</div>
+          <div class="step-lbl" id="sl3">Industry</div>
+        </div>
+        <div class="step-sep"></div>
+        <div class="step-item">
+          <div class="step-circle" id="sc4">4</div>
+          <div class="step-lbl" id="sl4">Verify</div>
+        </div>
+      </div>
+
+      <!-- ── STEP 1: Account ── -->
+      <div class="step-panel active" id="step1">
+        <div class="form-title">Create your account</div>
+        <div class="form-sub">Get started in under 2 minutes</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="field">
+            <label>First name</label>
+            <input class="input" id="firstName" type="text" placeholder="Jane">
+          </div>
+          <div class="field">
+            <label>Last name</label>
+            <input class="input" id="lastName" type="text" placeholder="Doe">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Work email</label>
+          <input class="input" id="email" type="email" placeholder="jane@company.com">
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input class="input" id="password" type="password" placeholder="Min. 8 characters" oninput="checkPassword(this.value)">
+          <div class="pw-bars" style="margin-top:8px">
+            <div class="pw-bar" id="pb1"></div>
+            <div class="pw-bar" id="pb2"></div>
+            <div class="pw-bar" id="pb3"></div>
+            <div class="pw-bar" id="pb4"></div>
+          </div>
+          <div class="pw-label" id="pwLabel">Enter a password</div>
+        </div>
+
+        <div class="field" style="margin-bottom:0">
+          <label style="display:flex;align-items:flex-start;gap:9px;cursor:pointer;font-weight:400">
+            <input type="checkbox" style="margin-top:2px;flex-shrink:0;accent-color:var(--accent)">
+            <span style="font-size:13px;color:var(--muted)">I agree to the <a href="#" style="color:var(--accent)">Terms of Service</a> and <a href="#" style="color:var(--accent)">Privacy Policy</a></span>
+          </label>
+        </div>
+
+        <button class="btn btn-primary btn-submit" style="width:100%;margin-top:24px;padding:14px;font-size:15px;border-radius:11px" onclick="nextStep(2)">
+          Continue →
+        </button>
+
+        <div style="text-align:center;margin-top:18px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="flex:1;height:1px;background:var(--border)"></div>
+            <span style="font-size:12px;color:var(--muted)">or</span>
+            <div style="flex:1;height:1px;background:var(--border)"></div>
+          </div>
+          <button class="btn btn-secondary" style="width:100%;justify-content:center;gap:10px">
+            <span>G</span> Continue with Google
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 2: Company ── -->
+      <div class="step-panel" id="step2">
+        <div class="form-title">About your company</div>
+        <div class="form-sub">Help us tailor RecruitIQ to your needs</div>
+
+        <div class="field">
+          <label>Company name</label>
+          <input class="input" id="company" type="text" placeholder="Acme Corp">
+        </div>
+
+        <div class="field">
+          <label>Team size</label>
+          <select class="input select" id="teamSize">
+            <option value="">Select team size...</option>
+            <option value="1-10">1–10 employees</option>
+            <option value="11-50">11–50 employees</option>
+            <option value="51-200">51–200 employees</option>
+            <option value="201-1000">201–1,000 employees</option>
+            <option value="1000+">1,000+ employees</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Role <span class="hint">(optional)</span></label>
+          <select class="input select" id="userRole">
+            <option value="">Select your role...</option>
+            <option>Recruiter</option>
+            <option>HR Manager</option>
+            <option>Talent Acquisition Lead</option>
+            <option>Hiring Manager</option>
+            <option>Founder / CEO</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Monthly hiring volume <span class="hint">(optional)</span></label>
+          <select class="input select" id="hiringVol">
+            <option value="">Select volume...</option>
+            <option>1–5 hires/month</option>
+            <option>6–20 hires/month</option>
+            <option>21–50 hires/month</option>
+            <option>50+ hires/month</option>
+          </select>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:4px">
+          <button class="btn btn-secondary" style="flex:1;justify-content:center" onclick="goToStep(1)">← Back</button>
+          <button class="btn btn-primary" style="flex:2;justify-content:center;padding:13px" onclick="nextStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 3: Industry ── -->
+      <div class="step-panel" id="step3">
+        <div class="form-title">Your industry</div>
+        <div class="form-sub">Select all that apply — helps us pre-configure skill libraries</div>
+
+        <div class="chips" style="margin-bottom:28px">
+          <div class="chip" onclick="toggleChip(this)" data-value="technology">💻 Technology</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="fintech">💰 Fintech</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="healthcare">🏥 Healthcare</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="ecommerce">🛒 E-commerce</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="saas">☁️ SaaS</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="media">🎬 Media</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="education">🎓 Education</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="consulting">📋 Consulting</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="logistics">🚚 Logistics</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="manufacturing">🏭 Manufacturing</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="gaming">🎮 Gaming</div>
+          <div class="chip" onclick="toggleChip(this)" data-value="other">⚙️ Other</div>
+        </div>
+
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-secondary" style="flex:1;justify-content:center" onclick="goToStep(2)">← Back</button>
+          <button class="btn btn-primary" style="flex:2;justify-content:center;padding:13px" onclick="submitSignup()">Send Verification →</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 4: Verify OTP ── -->
+      <div class="step-panel" id="step4">
+        <div class="form-title">Check your email</div>
+        <div class="form-sub" id="otpSubtitle">We sent a 6-digit code to your email</div>
+
+        <div class="otp-wrap">
+          <input class="otp-input" type="text" maxlength="1" inputmode="numeric" oninput="otpMove(this,1)" autofocus>
+          <input class="otp-input" type="text" maxlength="1" inputmode="numeric" oninput="otpMove(this,2)">
+          <input class="otp-input" type="text" maxlength="1" inputmode="numeric" oninput="otpMove(this,3)">
+          <input class="otp-input" type="text" maxlength="1" inputmode="numeric" oninput="otpMove(this,4)">
+          <input class="otp-input" type="text" maxlength="1" inputmode="numeric" oninput="otpMove(this,5)">
+          <input class="otp-input" type="text" maxlength="1" inputmode="numeric" oninput="otpMove(this,6)">
+        </div>
+
+        <button class="btn btn-primary btn-submit" style="width:100%;padding:14px;font-size:15px;border-radius:11px;justify-content:center" onclick="verifyOTP()">
+          Verify & Create Account →
+        </button>
+
+        <div style="text-align:center;margin-top:16px">
+          <button class="btn" id="resendBtn" style="background:none;border:none;color:var(--muted);font-size:13px" onclick="startResendCountdown()">Resend code</button>
+        </div>
+
+        <div style="margin-top:16px;font-size:12px;color:var(--muted);text-align:center">
+          Wrong email? <a href="#" onclick="goToStep(1)" style="color:var(--accent)">Go back and change it</a>
+        </div>
+      </div>
+
+      <!-- ── SUCCESS ── -->
+      <div class="step-panel" id="stepSuccess">
+        <div class="success-panel">
+          <span class="success-icon">🎉</span>
+          <div class="form-title" style="text-align:center">You're in!</div>
+          <p style="color:var(--muted);font-size:14px;margin:12px 0 30px;text-align:center;line-height:1.6">
+            Your RecruitIQ account is ready. Let's find your next great hire.
+          </p>
+          <a href="03-dashboard.html" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">
+            Go to Dashboard →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../js/global.js"></script>
+<script src="../js/signup.js"></script>
+</body>
+</html>

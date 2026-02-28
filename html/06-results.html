@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results — RecruitIQ</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo">Recruit<span>IQ</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item" href="03-dashboard.html"><span class="nav-icon">⊞</span> Dashboard</a>
+      <a class="nav-item" href="04-jobs.html"><span class="nav-icon">💼</span> Jobs<span class="nav-badge">12</span></a>
+      <a class="nav-item" href="05-upload.html"><span class="nav-icon">📤</span> Upload</a>
+      <a class="nav-item active" href="06-results.html"><span class="nav-icon">📋</span> Results</a>
+      <a class="nav-item" href="07-analytics.html"><span class="nav-icon">📈</span> Analytics</a>
+      <div class="nav-section-label" style="margin-top:16px">Settings</div>
+      <a class="nav-item" href="#"><span class="nav-icon">⚙️</span> Settings</a>
+      <a class="nav-item" href="#"><span class="nav-icon">🔒</span> Security</a>
+      <a class="nav-item" href="#"><span class="nav-icon">💳</span> Billing</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div>
+        <div class="user-name">Jane Doe</div>
+        <div class="user-role">Pro Plan</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <div class="main-content">
+    <header class="topbar">
+      <div>
+        <div class="topbar-title">Analysis Results</div>
+        <div class="topbar-subtitle">Senior Frontend Engineer · 6 candidates</div>
+      </div>
+      <div class="topbar-right">
+        <input class="topbar-search" id="candidateSearch" type="search" placeholder="🔍 Search candidates...">
+        <div class="icon-btn">🔔</div>
+        <button class="btn btn-secondary btn-sm" onclick="exportCSV()">⬇ Export CSV</button>
+        <a href="05-upload.html" class="btn btn-primary btn-sm">+ Upload More</a>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <!-- Top 3 Podium -->
+      <div style="margin-bottom:28px">
+        <div class="section-label" style="margin-bottom:16px">Top Candidates</div>
+        <div class="top3-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <div class="top-card" id="topCard1"></div>
+          <div class="top-card" id="topCard2"></div>
+          <div class="top-card" id="topCard3"></div>
+        </div>
+      </div>
+
+      <!-- Filter & Table -->
+      <div class="card" style="margin-bottom:24px">
+        <div class="panel-head" style="flex-wrap:wrap;gap:12px">
+          <span class="panel-title">All Candidates</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="f-chip active" data-filter="all" style="padding:5px 14px;border-radius:100px;background:rgba(110,231,183,0.1);border:1px solid rgba(110,231,183,0.3);color:var(--accent);font-size:12px;font-weight:600;cursor:pointer">All</button>
+            <button class="f-chip" data-filter="80plus" style="padding:5px 14px;border-radius:100px;background:none;border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;cursor:pointer">80%+ Match</button>
+            <button class="f-chip" data-filter="5years" style="padding:5px 14px;border-radius:100px;background:none;border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;cursor:pointer">5+ Years</button>
+            <button class="f-chip" data-filter="highats" style="padding:5px 14px;border-radius:100px;background:none;border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;cursor:pointer">High ATS</button>
+          </div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+            <span style="font-size:12px;color:var(--muted)">Sort by:</span>
+            <select onchange="sortCandidates(this.value)" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:7px;font-size:12px;font-family:'DM Sans';outline:none">
+              <option value="match">Match Score</option>
+              <option value="exp">Experience</option>
+              <option value="ats">ATS Score</option>
+            </select>
+          </div>
+        </div>
+        <!-- Table Header -->
+        <div class="rt-header" style="display:grid;grid-template-columns:50px 1fr 80px 160px 80px 150px 80px;gap:12px;padding:10px 20px;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border)">
+          <div class="th">Rank</div>
+          <div class="th">Candidate</div>
+          <div class="th">Exp</div>
+          <div class="th">Match Score</div>
+          <div class="th">ATS</div>
+          <div class="th">Skills</div>
+          <div class="th"></div>
+        </div>
+        <div id="resultsTableBody"></div>
+      </div>
+
+      <!-- Radar Chart -->
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:18px">
+        <div class="card">
+          <div class="panel-head">
+            <span class="panel-title">Skill Gap Analysis</span>
+            <span style="font-size:12px;color:var(--muted)">Required vs. Avg Candidate</span>
+          </div>
+          <div style="padding:24px;height:300px">
+            <canvas id="radarChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="panel-head"><span class="panel-title">Score Insights</span></div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:14px">
+            <div style="background:rgba(110,231,183,0.06);border:1px solid rgba(110,231,183,0.18);border-radius:10px;padding:14px">
+              <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Best Match</div>
+              <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--accent)">Sarah Chen</div>
+              <div style="font-size:12px;color:var(--muted)">94% — exceeds all requirements</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px">
+              <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Most Common Missing Skill</div>
+              <div style="font-weight:600">Jest / Testing</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px">Missing in 4 of 6 candidates</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px">
+              <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Average Match Score</div>
+              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--accent2)">75.3%</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px">
+              <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Ready to Shortlist</div>
+              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--accent)">3</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px">Candidates scoring above 80%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ── CANDIDATE DRAWER ── -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div class="user-avatar" style="width:48px;height:48px;font-size:16px" id="dAvatar">SC</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:800" id="dName">Sarah Chen</div>
+        <div style="font-size:12px;color:var(--muted)" id="dMeta">Senior Frontend Dev · 5 yrs</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800" id="dMatch">94%</div>
+      <button class="modal-close" onclick="closeDrawer()">×</button>
+    </div>
+  </div>
+  <div class="drawer-body" style="padding:22px;overflow-y:auto;flex:1">
+    <!-- ATS Score -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between">
+      <div style="font-size:13px;color:var(--muted)">ATS Score</div>
+      <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--accent2)" id="dAts">91</div>
+    </div>
+    <!-- Skills -->
+    <div style="margin-bottom:18px">
+      <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Skills</div>
+      <div class="d-skill-grid" id="dSkillGrid"></div>
+    </div>
+    <!-- Questions -->
+    <div>
+      <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">AI Interview Questions</div>
+      <div class="q-list" id="dQuestions"></div>
+    </div>
+  </div>
+  <div class="drawer-actions">
+    <button class="da-btn" onclick="closeDrawer()">Close</button>
+    <button class="da-btn">❌ Reject</button>
+    <button class="da-btn primary">★ Shortlist</button>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="../js/global.js"></script>
+<script src="../js/results.js"></script>
+</body>
+</html>

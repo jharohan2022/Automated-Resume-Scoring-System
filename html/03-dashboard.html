@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — RecruitIQ</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo">Recruit<span>IQ</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item active" href="03-dashboard.html">
+        <span class="nav-icon">⊞</span> Dashboard
+      </a>
+      <a class="nav-item" href="04-jobs.html">
+        <span class="nav-icon">💼</span> Jobs
+        <span class="nav-badge">12</span>
+      </a>
+      <a class="nav-item" href="05-upload.html">
+        <span class="nav-icon">📤</span> Upload
+      </a>
+      <a class="nav-item" href="06-results.html">
+        <span class="nav-icon">📋</span> Results
+      </a>
+      <a class="nav-item" href="07-analytics.html">
+        <span class="nav-icon">📈</span> Analytics
+      </a>
+      <div class="nav-section-label" style="margin-top:16px">Settings</div>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">⚙️</span> Settings
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">🔒</span> Security
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">💳</span> Billing
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div>
+        <div class="user-name">Jane Doe</div>
+        <div class="user-role">Pro Plan</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <div class="main-content">
+    <header class="topbar">
+      <div>
+        <div class="topbar-title">Dashboard</div>
+        <div class="topbar-subtitle">Friday, Feb 28, 2026</div>
+      </div>
+      <div class="topbar-right">
+        <input class="topbar-search" type="search" placeholder="🔍 Search jobs, candidates...">
+        <div class="icon-btn">🔔</div>
+        <div class="icon-btn">❓</div>
+        <a href="05-upload.html" class="btn btn-primary btn-sm">+ Upload Resumes</a>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <h2>Welcome back, Jane 👋</h2>
+          <p>You have <strong style="color:var(--accent)">47 new resumes</strong> analyzed today and <strong style="color:var(--accent2)">3 candidates</strong> ready for shortlisting.</p>
+        </div>
+        <div class="welcome-stat">
+          <strong id="stat-today">0</strong>
+          <span>Analyses today</span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat-grid">
+        <div class="stat-card c1">
+          <div class="stat-label">Today's Analyses</div>
+          <div class="stat-val c1" id="stat-today2">0</div>
+          <div class="stat-change up">↑ 12% from yesterday</div>
+        </div>
+        <div class="stat-card c2">
+          <div class="stat-label">Active Jobs</div>
+          <div class="stat-val c2" id="stat-jobs">0</div>
+          <div class="stat-change up">↑ 2 new this week</div>
+        </div>
+        <div class="stat-card c3">
+          <div class="stat-label">Avg Match Score</div>
+          <div class="stat-val c3" id="stat-match">0</div>
+          <div class="stat-change down">↓ 3% from last week</div>
+        </div>
+        <div class="stat-card c4">
+          <div class="stat-label">Hire Rate</div>
+          <div class="stat-val c4" id="stat-hire">0</div>
+          <div class="stat-change up">↑ 1.2% this month</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">Resumes Analyzed</div>
+          <div class="chart-sub">This week by day</div>
+          <canvas id="lineChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Score Distribution</div>
+          <div class="chart-sub">All candidates</div>
+          <canvas id="barChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Top Skills</div>
+          <div class="chart-sub">Across all jobs</div>
+          <canvas id="doughChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Two Column -->
+      <div class="two-col">
+        <!-- Jobs Table -->
+        <div class="card">
+          <div class="panel-head">
+            <span class="panel-title">Active Jobs</span>
+            <a href="04-jobs.html" class="panel-action">View all →</a>
+          </div>
+          <div class="table-header">
+            <div class="th">Job</div>
+            <div class="th">Status</div>
+            <div class="th">Resumes</div>
+            <div class="th">Top Score</div>
+            <div class="th"></div>
+          </div>
+          <div id="jobsTable"></div>
+        </div>
+
+        <!-- Right Column -->
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <!-- Quick Actions -->
+          <div class="card">
+            <div class="panel-head"><span class="panel-title">Quick Actions</span></div>
+            <div class="quick-actions">
+              <a href="04-jobs.html" class="quick-btn">
+                <div class="qb-icon qb-i1">💼</div>
+                <div class="qb-text"><strong>Create New Job</strong><span>Post a role and set requirements</span></div>
+                <span class="qb-arrow">›</span>
+              </a>
+              <a href="05-upload.html" class="quick-btn">
+                <div class="qb-icon qb-i2">📤</div>
+                <div class="qb-text"><strong>Upload Resumes</strong><span>Bulk upload PDF or DOCX files</span></div>
+                <span class="qb-arrow">›</span>
+              </a>
+              <a href="06-results.html" class="quick-btn">
+                <div class="qb-icon qb-i3">📊</div>
+                <div class="qb-text"><strong>View Results</strong><span>See ranked candidates</span></div>
+                <span class="qb-arrow">›</span>
+              </a>
+              <a href="07-analytics.html" class="quick-btn">
+                <div class="qb-icon qb-i4">📈</div>
+                <div class="qb-text"><strong>Analytics</strong><span>Hiring trends & insights</span></div>
+                <span class="qb-arrow">›</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Top Candidates -->
+          <div class="card">
+            <div class="panel-head">
+              <span class="panel-title">Top Candidates</span>
+              <a href="06-results.html" class="panel-action">All results →</a>
+            </div>
+            <div style="padding:14px" id="candidateList"></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="../js/global.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>
